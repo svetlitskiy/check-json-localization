@@ -9,6 +9,8 @@
 
 module.exports = function (grunt) {
 
+  var report = [];
+
   grunt.registerMultiTask('unambiguity', 'check unambiguity in different languages', function () {
     var files = grunt.file.expand(this.data.src), languages = languagesForCompare(this.data.languages || ['en', 'ru']);
     if (this.data.exclude) {
@@ -24,6 +26,7 @@ module.exports = function (grunt) {
       })
     });
 
+    grunt.file.write('report.txt', report.join('\n'));
   });
 
 
@@ -88,8 +91,9 @@ module.exports = function (grunt) {
 
     if (msg) {
       //grunt.log.writeln("##teamcity[buildProblem description='" + msg + "' identity='checkLocalizationFailed']");
-      grunt.fail.warn(msg);
-      //grunt.file.write('localization.log', msg);
+      //grunt.fail.warn(msg);
+      //grunt.file.writeln('localization.log', msg);
+      report.push(msg);
     }
 
   };
