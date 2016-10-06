@@ -20,7 +20,7 @@ module.exports = function (grunt) {
       });
     }
     files.forEach(function (file) {
-      grunt.log.writeln('unambiguity: check' + file);
+      grunt.log.writeln('unambiguity: check ' + file);
       languages.forEach(function(l){
         var l1 = l.l1, l2 = l.l2;
         checkUnambiguity(file, l1,l2);
