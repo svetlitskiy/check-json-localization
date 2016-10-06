@@ -13,12 +13,19 @@ module.exports = function (grunt) {
 
         // Example configuration
         unambiguity: {
-            src: [
-                '**/locale.json'
-            ]
+            locale: {
+                src: [
+                    '**/locale.json'
+                ],
+                exclude: ['**/task/**'],
+                languages: ['en', 'ru', 'es']
+            }
         }
     });
 
     grunt.loadTasks('tasks');
+
+    //grunt.loadNpmTasks('unambiguity');
+    //grunt.registerTask('default', ['jshint', 'complexity']);
 
 };
