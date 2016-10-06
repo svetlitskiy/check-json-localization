@@ -18,7 +18,8 @@ module.exports = function (grunt) {
                     '**/locale.json'
                 ],
                 exclude: ['**/task/**'],
-                languages: ['en', 'ru', 'es']
+                languages: ['en', 'ru', 'es'],
+                report: 'unambiguity.txt'
             }
         }
     });
