@@ -82,7 +82,7 @@ module.exports = function (grunt) {
     } else if (!ln2) {
       error = 'file ' + file + ' doesn\'t have "'+ lang2 + '" part';
     } else {
-      var keysLn1 = sub(ln1, ln2), keysLn2 = sub(ln1, ln2);
+      var keysLn1 = sub(ln1, ln2), keysLn2 = sub(ln2, ln1);
       if (keysLn1.length > 0) {
         error =
           'Localization error, the file ' + file + ' has keys ' + keysLn1.join(', ') + ' in the "' + lang1 + '" part, but doesn\'t have them in the "' + lang2 +
