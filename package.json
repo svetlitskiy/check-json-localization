@@ -1,0 +1,38 @@
+{
+  "name": "grunt-json-localization",
+  "description": "Check character encoding of files using chardet.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/svetlitskiy/check-json-localization.git",
+  "author": {
+    "name": "Aleksey Svetlitskiy",
+    "email": "a.svetlitskiy@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/svetlitskiy/check-json-localization.git"
+  },
+  "bugs": {
+    "url": "https://github.com/svetlitskiy/check-json-localization.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/svetlitskiy/check-json-localization/blob/master/LICENSE"
+    }
+  ],
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "localization",
+    "json",
+    "grunt",
+    "locale"
+  ],
+  "dependencies": {
+  }
+}
