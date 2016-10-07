@@ -2,19 +2,39 @@
   "ru": {
     "Refresh": "Обновить",
     "ClearFilters": "Очистить фильтр",
-    "AddRuleSet": "Добавить набор правил",
     "Create": "Создать",
-    "Update": "Изменить"
+    "Time": {
+      "day": "День",
+      "hour": "Час"
+    },
+    "CreateNew": "Создать"
   },
   "en": {
     "Refresh": "Обновить",
     "ClearFilters": "Очистить фильтр",
     "Create": "Создать",
-    "Update": "Изменить"
+    "Time": {
+      "day": "day",
+      "hour": "Час",
+      "secondType": {
+        "uts": "233",
+        "mnt": "45",
+        "ggg": {
+          "ffff": 1
+        }
+      }
+    },
+
+    "CreateNew": "Создать"
   },
   "es": {
     "Refresh": "Обновить",
     "ClearFilters": "Очистить фильтр",
-    "Create": "Создать"
+    "Create": "Создать",
+    "Time": {
+      "day": "День",
+      "hour": "Час"
+    },
+    "CreateNew": "Создать"
   }
 }

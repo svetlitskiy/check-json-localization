@@ -27,8 +27,9 @@ module.exports = function (grunt) {
       })
     });
 
-    grunt.file.write(reportFile, report.join('\n'));
+
     if (report.length > 0) {
+      grunt.file.write(reportFile, report.join('\n'));
       grunt.fail.warn(report[0]);
     }
   });
@@ -53,15 +54,16 @@ module.exports = function (grunt) {
    * @param {Object} obj2 - второй объект
    * @returns {Array}
    */
-  var sub = function (obj1, obj2) {
+  var sub = function (obj1, obj2, prefix) {
     var errorKeys = [];
     for (var key in obj1) {
       if (obj1.hasOwnProperty(key)) {
-        if (typeof obj1[key] === 'object') {
-          sub(obj1[key], obj2[key]);
+        if (typeof obj1[key] === 'object' && typeof obj2[key] === 'object') {
+          var newErrors = sub(obj1[key], obj2[key], prefix ? prefix + '.'+ key : key);
+          errorKeys = errorKeys.concat(newErrors);
         } else {
           if (!obj2[key]) {
-            errorKeys.push(key);
+            errorKeys.push(prefix ? prefix + '.'+ key : key);
           }
         }
       }
