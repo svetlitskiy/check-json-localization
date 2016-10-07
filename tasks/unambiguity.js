@@ -76,31 +76,24 @@ module.exports = function (grunt) {
   var checkUnambiguity = function (file, lang1, lang2) {
     var body = grunt.file.readJSON(file), ln1 = body && body[lang1], ln2 = body && body[lang2];
 
-    var error;
     if (!ln1) {
-      error = 'file ' + file + ' doesn\'t have "'+ lang1 + '" part';
+      report.push('file ' + file + ' doesn\'t have "'+ lang1 + '" part');
     } else if (!ln2) {
-      error = 'file ' + file + ' doesn\'t have "'+ lang2 + '" part';
+      report.push('file ' + file + ' doesn\'t have "'+ lang2 + '" part');
     } else {
       var keysLn1 = sub(ln1, ln2), keysLn2 = sub(ln2, ln1);
       if (keysLn1.length > 0) {
-        error =
+        report.push(
           'Localization error, the file ' + file + ' has keys ' + keysLn1.join(', ') + ' in the "' + lang1 + '" part, but doesn\'t have them in the "' + lang2 +
-          '" part.';
+          '" part.');
       }
       if (keysLn2.length > 0) {
-        error =
+        report.push(
           'Localization error, the file ' + file + ' has keys ' + keysLn2.join(', ') + ' in the "' + lang2 + '" part, but doesn\'t have them in the "' + lang1 +
-          '" part.';
+          '" part.');
       }
     }
 
-    if (error) {
-      //grunt.log.writeln("##teamcity[buildProblem description='" + msg + "' identity='checkLocalizationFailed']");
-      //grunt.fail.warn(msg);
-      //grunt.file.writeln('localization.log', msg);
-      report.push('Error: ' + error);
-    }
 
   };
 
