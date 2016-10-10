@@ -19,7 +19,7 @@ module.exports = function (grunt) {
       });
     }
     files.forEach(function (file) {
-      grunt.log.writeln('unambiguity: check ' + file);
+      grunt.log.writeln('entering: check ' + file);
       parts.forEach(function(part) {
         checkPattern(file, part.lang, part.pattern);
       });
@@ -45,7 +45,6 @@ module.exports = function (grunt) {
     for (var key in obj1) {
       if (obj1.hasOwnProperty(key)) {
         if (typeof obj1[key] === 'string') {
-          console.log('String');
           var matched = obj1[key].match(pattern);
           if (matched !== null) {
             errorKeys.push({key: prefix ? prefix + '.'+ key : key, string: matched[0]});
@@ -67,7 +66,6 @@ module.exports = function (grunt) {
     var check = body && body[lang];
     var errors = sub(check, pattern) || [];
     errors.forEach(function(error){
-      console.log(error);
       report.push('Localization error, the file ' + file + ' has key ' + error.key + ' with forbidden symbols in string ' + error.string + ' in ' + lang + ' part');
     });
   };
