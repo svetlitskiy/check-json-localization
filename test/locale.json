@@ -10,9 +10,9 @@
     "CreateNew": "Создать"
   },
   "en": {
-    "Refresh": "Обновить",
-    "ClearFilters": "Очистить фильтр",
-    "Create": "Создать",
+    "Refresh": "Refresh",
+    "ClearFilters": "ClearFilters",
+    "Create": "Create",
     "Time": {
       "day": "day",
       "hour": "Час",
@@ -24,7 +24,6 @@
         }
       }
     },
-
     "CreateNew": "Создать"
   },
   "es": {

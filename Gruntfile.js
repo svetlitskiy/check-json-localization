@@ -21,6 +21,17 @@ module.exports = function (grunt) {
                 languages: ['en', 'ru'],
                 report: 'unambiguity.txt'
             }
+        },
+        entering: {
+            locale: {
+                src: [
+                    '**/locale.json'
+                ],
+                parts: [
+                    {lang: 'en', pattern: '[^\u0000-\u007F,\u00AB,\u00BB]+'}
+                ],
+                report: 'entering.txt'
+            }
         }
     });
 
