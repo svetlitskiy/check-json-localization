@@ -19,7 +19,10 @@ module.exports = function (grunt) {
                 ],
                 exclude: ['**/task/**'],
                 languages: ['en', 'ru'],
-                report: 'unambiguity.txt'
+                report: {
+                    file: 'unambiguity.txt',
+                    encoding: 'win1251'
+                }
             }
         },
         entering: {
@@ -30,7 +33,10 @@ module.exports = function (grunt) {
                 parts: [
                     {lang: 'en', pattern: '[^\u0000-\u007F,\u00AB,\u00BB]+'}
                 ],
-                report: 'entering.txt'
+                report: {
+                    file: 'entering.txt',
+                    encoding: 'win1251'
+                }
             }
         }
     });

@@ -12,7 +12,8 @@ module.exports = function (grunt) {
   var report = [];
 
   grunt.registerMultiTask('entering', 'check entering', function () {
-    var files = grunt.file.expand(this.data.src), parts = this.data.parts,  reportFile = this.data.report || 'entering.txt';
+    var files = grunt.file.expand(this.data.src), parts = this.data.parts,  reportFile = this.data.report.file || 'entering.txt',
+      reportEncoding = this.data.report.encoding || 'utf8';
     if (this.data.exclude) {
       grunt.file.expand(this.data.exclude).forEach(function(e) {
         files.splice(files.indexOf(e), 1);
@@ -27,7 +28,7 @@ module.exports = function (grunt) {
     });
     
     if (report.length > 0) {
-      grunt.file.write(reportFile, report.join('\n'));
+      grunt.file.write(reportFile, report.join('\n'), {encoding: reportEncoding});
       grunt.fail.warn(report[0]);
     }
   });

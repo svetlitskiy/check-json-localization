@@ -13,7 +13,7 @@ module.exports = function (grunt) {
 
   grunt.registerMultiTask('unambiguity', 'check unambiguity in different languages', function () {
     var files = grunt.file.expand(this.data.src), languages = languagesForCompare(this.data.languages || ['en', 'ru']),
-      reportFile = this.data.report || 'unambiguity.txt';
+      reportFile = this.data.report.file || 'unambiguity.txt', reportEncoding = this.data.report.encoding || 'utf8';
     if (this.data.exclude) {
       grunt.file.expand(this.data.exclude).forEach(function(e) {
         files.splice(files.indexOf(e), 1);
@@ -29,7 +29,7 @@ module.exports = function (grunt) {
 
 
     if (report.length > 0) {
-      grunt.file.write(reportFile, report.join('\n'));
+      grunt.file.write(reportFile, report.join('\n'), {encoding: reportEncoding});
       grunt.fail.warn(report[0]);
     }
   });
