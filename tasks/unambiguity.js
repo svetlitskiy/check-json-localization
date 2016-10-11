@@ -78,7 +78,7 @@ module.exports = function (grunt) {
           var newErrors = sub(obj1[key], obj2[key], prefix ? prefix + '.'+ key : key);
           errorKeys = errorKeys.concat(newErrors);
         } else {
-          if (!obj2[key]) {
+          if (!obj2[key] && obj2[key]!=='') {
             errorKeys.push(prefix ? prefix + '.'+ key : key);
           }
         }
