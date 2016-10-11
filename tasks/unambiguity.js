@@ -1,8 +1,8 @@
 /*
  * unambiguity
- * https://github.com/pigulla/grunt-encoding
+ * https://github.com/svetlitskiy/check-json-localization.git
  *
- * Copyright (c) 2013-2015 Raphael Pigulla <pigulla@four66.com>
+ * Copyright (c) 2013-2015 Aleksey Svetlitskiy <a.svetlitskiy@gmail.com>
  * Licensed under the MIT license.
  */
 'use strict';
@@ -12,20 +12,36 @@ module.exports = function (grunt) {
   var report = [];
 
   grunt.registerMultiTask('unambiguity', 'check unambiguity in different languages', function () {
-    var files = grunt.file.expand(this.data.src), languages = languagesForCompare(this.data.languages || ['en', 'ru']),
+    var files = grunt.file.expand(this.data.src), confLangs = this.data.languages || ['en', 'ru'], languages = languagesForCompare(confLangs),
       reportFile = this.data.report.file || 'unambiguity.txt', reportEncoding = this.data.report.encoding || 'utf8';
     if (this.data.exclude) {
       grunt.file.expand(this.data.exclude).forEach(function(e) {
         files.splice(files.indexOf(e), 1);
       });
     }
+    var tempFiles = {};
     files.forEach(function (file) {
-      grunt.log.writeln('unambiguity: check ' + file);
-      languages.forEach(function(l){
-        var l1 = l.l1, l2 = l.l2;
-        checkUnambiguity(file, l1,l2);
-      })
+      var fileName = file.split('/').pop().toString();
+      var langFromFile = fileName.substr(-7,2);
+      var fileBody = grunt.file.readJSON(file);
+
+      if (confLangs.indexOf(langFromFile) > -1) {
+        if (!tempFiles[file.substr(0, file.length - fileName.length)]) {
+          tempFiles[file.substr(0, file.length - fileName.length)] = {};
+        }
+        tempFiles[file.substr(0, file.length - fileName.length)][langFromFile] = fileBody;
+      } else {
+        tempFiles[file] = fileBody;
+      }
     });
+
+    for(var tempFile in tempFiles) {
+      grunt.log.writeln('unambiguity: check ' + tempFile);
+      languages.forEach(function (l) {
+        var l1 = l.l1, l2 = l.l2;
+        checkUnambiguity(tempFiles[tempFile], l1, l2, tempFile);
+      })
+    }
 
 
     if (report.length > 0) {
@@ -75,8 +91,8 @@ module.exports = function (grunt) {
    * Проверка что в русской и английской частях есть все объекты
    * @param {String} file - путь к файлу
    */
-  var checkUnambiguity = function (file, lang1, lang2) {
-    var body = grunt.file.readJSON(file), ln1 = body && body[lang1], ln2 = body && body[lang2];
+  var checkUnambiguity = function (body, lang1, lang2, file) {
+    var ln1 = body && body[lang1], ln2 = body && body[lang2];
 
     if (!ln1) {
       report.push('file ' + file + ' doesn\'t have "'+ lang1 + '" part');

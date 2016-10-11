@@ -31,7 +31,7 @@ module.exports = function (grunt) {
                     '**/locale.json'
                 ],
                 parts: [
-                    {lang: 'en', pattern: '[^\u0000-\u007F,\u00AB,\u00BB]+'}
+                    {lang: 'ru', pattern: '[^\u0000-\u007F,\u0410-\u044F,\u00AB,\u00BB,\u0401,\u0451]+'}
                 ],
                 report: {
                     file: 'entering.txt',

@@ -1,8 +1,8 @@
 /*
- * unambiguity
- * https://github.com/pigulla/grunt-encoding
+ * entering
+ * https://github.com/svetlitskiy/check-json-localization.git
  *
- * Copyright (c) 2013-2015 Raphael Pigulla <pigulla@four66.com>
+ * Copyright (c) 2016 Aleksey Svetlitskiy <a.svetlitskiy@gmail.com>
  * Licensed under the MIT license.
  */
 'use strict';
