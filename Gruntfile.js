@@ -15,7 +15,7 @@ module.exports = function (grunt) {
         unambiguity: {
             locale: {
                 src: [
-                    '**/locale.json'
+                    '**/locale*.json'
                 ],
                 exclude: ['**/task/**'],
                 languages: ['en', 'ru'],
@@ -28,9 +28,10 @@ module.exports = function (grunt) {
         entering: {
             locale: {
                 src: [
-                    '**/locale.json'
+                    '**/locale*.json'
                 ],
                 parts: [
+                    {lang: 'en', pattern: '[^\u0000-\u007F,\u2010,\u2014,\u2026,\u00AB,\u00BB]+'},
                     {lang: 'ru', pattern: '[^\u0000-\u007F,\u0410-\u044F,\u00AB,\u00BB,\u0401,\u0451]+'}
                 ],
                 report: {

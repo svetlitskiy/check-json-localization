@@ -1,0 +1,19 @@
+{
+  "identifierCreate": {
+    "captions": {
+      "broadbandMode": "Создание идетификатора стандарта ШПД",
+      "customMode": "Смена идентификатора"
+    },
+    "messages": {
+      "missingStandardIdInputParam": "Не передан входной параметр \"standardId\"",
+      "wrongStandard": "Передан неподходящий стандарт: необходим стандарт типа BROADBAND или CUSTOM",
+      "identifierRequiredError": "Обязательно укажите идентификатор",
+      "duplicateIdentifiers": "Найдены повторяющиеся идентификаторы: %1",
+      "uniqueConstraint": "Идентификатор %1 уже существует"
+    },
+    "identifier": "Идентификатор",
+    "newIdentifier": "Новый идентификатор",
+    "identifierType": "Тип нумерации",
+    "switchh": "Коммутатор"
+  }
+}

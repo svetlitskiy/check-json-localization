@@ -19,14 +19,35 @@ module.exports = function (grunt) {
         files.splice(files.indexOf(e), 1);
       });
     }
+
+    var tempFiles = {};
     files.forEach(function (file) {
-      grunt.log.writeln('entering: check ' + file);
-      parts.forEach(function(part) {
-        checkPattern(file, part.lang, part.pattern);
+      var fileName = file.split('/').pop().toString();
+      var langFromFile = fileName.substr(-7,2);
+      var fileBody = grunt.file.readJSON(file);
+
+      var check = parts.filter(function(part){
+        return part && langFromFile === part.lang;
       });
-      
+
+
+      if (check.length > 0) {
+        if (!tempFiles[file.substr(0, file.length - fileName.length)]) {
+          tempFiles[file.substr(0, file.length - fileName.length)] = {};
+        }
+        tempFiles[file.substr(0, file.length - fileName.length)][langFromFile] = fileBody;
+      } else {
+        tempFiles[file] = fileBody;
+      }
     });
-    
+
+    for(var tempFile in tempFiles) {
+      grunt.log.writeln('entering: check ' + tempFile);
+      parts.forEach(function(part) {
+        checkPattern(tempFiles[tempFile], part.lang, part.pattern, tempFile);
+      });
+    }
+
     if (report.length > 0) {
       grunt.file.write(reportFile, report.join('\n'), {encoding: reportEncoding});
       grunt.fail.warn(report[0]);
@@ -62,12 +83,11 @@ module.exports = function (grunt) {
   };
 
 
-  var checkPattern = function(file, lang, pattern) {
-    var body = grunt.file.readJSON(file);
+  var checkPattern = function(body, lang, pattern, file) {
     var check = body && body[lang];
     var errors = sub(check, pattern) || [];
     errors.forEach(function(error){
-      report.push('Localization error, the file ' + file + ' has key ' + error.key + ' with forbidden symbols in string ' + error.string + ' in ' + lang + ' part');
+      report.push('Localization error, the file ' + file + ' has key ' + error.key + ' with forbidden symbols ' + error.string + ' in ' + lang + ' part');
     });
   };
 

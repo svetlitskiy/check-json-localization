@@ -1,0 +1,19 @@
+﻿{
+  "identifierCreate": {
+    "captions": {
+      "broadbandMode": "Add broadband identifier",
+      "customMode": "Change identifier"
+    },
+    "messages": {
+      "missingStandardIdInputParam": "StandardId is missing",
+      "wrongStandard": "Invalid standard: BROADBAND or CUSTOM expected",
+      "identifierRequiredError": "Обязательно укажите идентификатор",
+      "duplicateIdentifiers": "Duplicate identifiers found: %1",
+      "uniqueConstraint": "%1 identifier already exists"
+    },
+    "identifier": "Identifier",
+    "newIdentifier": "New identifier",
+    "identifierType": "Identifier type",
+    "switchh": "Switch"
+  }
+}

@@ -2,7 +2,7 @@
  * unambiguity
  * https://github.com/svetlitskiy/check-json-localization.git
  *
- * Copyright (c) 2013-2015 Aleksey Svetlitskiy <a.svetlitskiy@gmail.com>
+ * Copyright (c) 2016 Aleksey Svetlitskiy <a.svetlitskiy@gmail.com>
  * Licensed under the MIT license.
  */
 'use strict';
